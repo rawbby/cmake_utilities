@@ -1,5 +1,5 @@
 file(DOWNLOAD
-        "https://codeload.github.com/rawbby/cmake_utilities/tar.gz/refs/tags/v1.0.0"
+        "https://codeload.github.com/rawbby/cmake_utilities/tar.gz/refs/tags/v1.1.0"
         "${CMAKE_BINARY_DIR}/temp.tar.gz"
         STATUS DOWNLOAD_STATUS)
 

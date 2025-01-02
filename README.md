@@ -12,7 +12,7 @@ cmake_minimum_required(VERSION 3.24)
 
 project(sample)
 
-file(DOWNLOAD "https://github.com/rawbby/cmake_utilities/blob/v1.0.0/bootstrap.cmake"
+file(DOWNLOAD "https://github.com/rawbby/cmake_utilities/blob/main/bootstrap.cmake"
         "${PROJECT_SOURCE_DIR}/cmake/bootstrap.cmake")
 include(cmake/bootstrap.cmake)
 ```
