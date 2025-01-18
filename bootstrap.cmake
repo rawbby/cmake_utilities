@@ -1,25 +1,34 @@
-file(DOWNLOAD
-        "https://codeload.github.com/rawbby/cmake_utilities/tar.gz/refs/tags/v1.1.0"
-        "${CMAKE_BINARY_DIR}/temp.tar.gz"
-        STATUS DOWNLOAD_STATUS)
+cmake_minimum_required(VERSION 3.14)
 
-list(GET DOWNLOAD_STATUS 0 DOWNLOAD_STATUS)
-if (NOT ${DOWNLOAD_STATUS} EQUAL 0)
-    message(FATAL_ERROR "File download failed with error code: ${DOWNLOAD_STATUS}")
+file(LOCK "${CMAKE_CURRENT_SOURCE_DIR}/.cmake_utilities/.download_lock" DIRECTORY GUARD FILE WAIT)
+
+if (NOT EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/.cmake_utilities/.valid")
+
+    set(FILENAMES
+            "add_executable_directory.cmake"
+            "add_executables_directory.cmake"
+            "add_libraries_directory.cmake"
+            "add_library_directory.cmake"
+            "all.cmake"
+            "cxx20.cmake"
+            "LICENSE"
+            "normalise_output_directories.cmake"
+            "README.md"
+            "util.cmake")
+
+    foreach (FILENAME ${FILENAMES})
+        file(DOWNLOAD
+                "https://raw.githubusercontent.com/rawbby/cmake_utilities/v1.2.0/${FILENAME}"
+                "${CMAKE_CURRENT_SOURCE_DIR}/.cmake_utilities/${FILENAME}"
+                STATUS DOWNLOAD_STATUS)
+        list(GET DOWNLOAD_STATUS 0 DOWNLOAD_CODE)
+        if (NOT ${DOWNLOAD_CODE} EQUAL 0)
+            file(UNLOCK "${CMAKE_CURRENT_SOURCE_DIR}/.cmake_utilities/.download_lock" DIRECTORY GUARD FILE)
+            message(FATAL_ERROR "File download failed with error code: ${DOWNLOAD_CODE}")
+        endif ()
+    endforeach ()
+
+    file(WRITE "${CMAKE_CURRENT_SOURCE_DIR}/.cmake_utilities/.valid" "")
 endif ()
 
-file(MAKE_DIRECTORY "${PROJECT_SOURCE_DIR}/cmake")
-file(MAKE_DIRECTORY "${CMAKE_BINARY_DIR}/temp")
-file(ARCHIVE_EXTRACT INPUT "${CMAKE_BINARY_DIR}/temp.tar.gz" DESTINATION "${CMAKE_BINARY_DIR}/temp")
-file(GLOB EXTRACTED_CONTENT "${CMAKE_BINARY_DIR}/temp/*")
-foreach (ITEM ${EXTRACTED_CONTENT})
-    if (IS_DIRECTORY ${ITEM})
-        file(GLOB SUB_ITEMS "${ITEM}/*")
-        foreach (SUB_ITEM ${SUB_ITEMS})
-            file(COPY ${SUB_ITEM} DESTINATION "${PROJECT_SOURCE_DIR}/cmake")
-        endforeach ()
-    else ()
-        file(COPY ${ITEM} DESTINATION "${PROJECT_SOURCE_DIR}/cmake")
-    endif ()
-endforeach ()
-file(REMOVE_RECURSE "${CMAKE_BINARY_DIR}/temp")
+file(UNLOCK "${CMAKE_CURRENT_SOURCE_DIR}/.cmake_utilities/.download_lock" DIRECTORY GUARD FILE)
