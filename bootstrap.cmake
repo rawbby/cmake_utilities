@@ -1,6 +1,14 @@
 cmake_minimum_required(VERSION 3.14)
 
 set(CMAKE_UTILITIES_VERSION "main" CACHE STRING "")
+if (CMAKE_UTILITIES_VERSION STREQUAL "main")
+    set(CMAKE_UTILITIES_BASE_URL "https://raw.githubusercontent.com/rawbby/cmake_utilities/refs/heads/main")
+else ()
+    set(CMAKE_UTILITIES_BASE_URL "https://raw.githubusercontent.com/rawbby/cmake_utilities/refs/tags/${CMAKE_UTILITIES_VERSION}")
+endif ()
+
+message(" --- ${CMAKE_UTILITIES_VERSION}")
+message(" --- ${CMAKE_UTILITIES_BASE_URL}")
 
 file(LOCK "${CMAKE_CURRENT_SOURCE_DIR}/.cmake_utilities/download.lock" GUARD FILE RESULT_VARIABLE LOCK_RESULT)
 if (LOCK_RESULT)
@@ -8,12 +16,6 @@ if (LOCK_RESULT)
 endif ()
 
 if (NOT EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/.cmake_utilities/.valid")
-
-    if (CMAKE_UTILITIES_VERSION STREQUAL "main")
-        set(CMAKE_UTILITIES_BASE_URL "https://raw.githubusercontent.com/rawbby/cmake_utilities/refs/heads/main")
-    else ()
-        set(CMAKE_UTILITIES_BASE_URL "https://raw.githubusercontent.com/rawbby/cmake_utilities/refs/tags/${CMAKE_UTILITIES_VERSION}")
-    endif ()
 
     set(FILENAMES
             "add_executable_directory.cmake"
