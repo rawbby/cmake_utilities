@@ -42,5 +42,3 @@ if (NOT EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/.cmake_utilities/.valid")
 
     file(WRITE "${CMAKE_CURRENT_SOURCE_DIR}/.cmake_utilities/.valid" "")
 endif ()
-
-file(UNLOCK "${CMAKE_CURRENT_SOURCE_DIR}/.cmake_utilities/download.lock" DIRECTORY GUARD FILE)
