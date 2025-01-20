@@ -8,7 +8,9 @@ function(add_executable_directory TARGET_BASE_DIR TARGET_REL_DIR)
     target_name_from_rel_dir(TARGET_NAME "${TARGET_REL_DIR}")
 
     file(GLOB_RECURSE TARGET_SOURCE
+            "${TARGET_ABS_DIR}/src/*.c"
             "${TARGET_ABS_DIR}/src/*.h"
+            "${TARGET_ABS_DIR}/src/*.hpp"
             "${TARGET_ABS_DIR}/src/*.cpp")
 
     add_executable(${TARGET_NAME})

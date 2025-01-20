@@ -6,9 +6,13 @@ function(add_library_directory TARGET_BASE_DIR TARGET_REL_DIR)
     get_filename_component(TARGET_ABS_DIR "${TARGET_BASE_DIR}/${TARGET_REL_DIR}" ABSOLUTE)
     target_name_from_rel_dir(TARGET_NAME "${TARGET_REL_DIR}")
 
-    file(GLOB_RECURSE TARGET_HEADER "${TARGET_ABS_DIR}/include/*.hpp")
+    file(GLOB_RECURSE TARGET_HEADER
+            "${TARGET_ABS_DIR}/include/*.h"
+            "${TARGET_ABS_DIR}/include/*.hpp")
 
     file(GLOB_RECURSE TARGET_SOURCE
+            "${TARGET_ABS_DIR}/src/*.c"
+            "${TARGET_ABS_DIR}/src/*.h"
             "${TARGET_ABS_DIR}/src/*.hpp"
             "${TARGET_ABS_DIR}/src/*.cpp")
 

@@ -7,9 +7,6 @@ else ()
     set(CMAKE_UTILITIES_BASE_URL "https://raw.githubusercontent.com/rawbby/cmake_utilities/refs/tags/${CMAKE_UTILITIES_VERSION}")
 endif ()
 
-message(" --- ${CMAKE_UTILITIES_VERSION}")
-message(" --- ${CMAKE_UTILITIES_BASE_URL}")
-
 file(LOCK "${CMAKE_CURRENT_SOURCE_DIR}/.cmake_utilities/download.lock" GUARD FILE RESULT_VARIABLE LOCK_RESULT)
 if (LOCK_RESULT)
     message(FATAL_ERROR "failed to acquire download.lock")
