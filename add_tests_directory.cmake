@@ -1,6 +1,6 @@
 include_guard(GLOBAL)
-include("${CMAKE_SOURCE_DIR}/cmake/util.cmake")
-include("${CMAKE_SOURCE_DIR}/cmake/cxx20.cmake")
+include("${CMAKE_SOURCE_DIR}/.cmake_utilities/util.cmake")
+include("${CMAKE_SOURCE_DIR}/.cmake_utilities/cxx20.cmake")
 
 option(BUILD_TESTING "Build Tests" OFF)
 if (BUILD_TESTING)

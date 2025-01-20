@@ -9,6 +9,12 @@ endif ()
 
 if (NOT EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/.cmake_utilities/.valid")
 
+    if (CMAKE_UTILITIES_VERSION STREQUAL "main")
+        set(CMAKE_UTILITIES_BASE_URL "https://raw.githubusercontent.com/rawbby/cmake_utilities/refs/heads/main")
+    else ()
+        set(CMAKE_UTILITIES_BASE_URL "https://raw.githubusercontent.com/rawbby/cmake_utilities/refs/tags/${CMAKE_UTILITIES_VERSION}")
+    endif ()
+
     set(FILENAMES
             "add_executable_directory.cmake"
             "add_executables_directory.cmake"
@@ -24,7 +30,7 @@ if (NOT EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/.cmake_utilities/.valid")
 
     foreach (FILENAME ${FILENAMES})
         file(DOWNLOAD
-                "https://raw.githubusercontent.com/rawbby/cmake_utilities/${CMAKE_UTILITIES_VERSION}/${FILENAME}"
+                "${CMAKE_UTILITIES_BASE_URL}/${FILENAME}"
                 "${CMAKE_CURRENT_SOURCE_DIR}/.cmake_utilities/${FILENAME}"
                 STATUS DOWNLOAD_STATUS)
         list(GET DOWNLOAD_STATUS 0 DOWNLOAD_CODE)
