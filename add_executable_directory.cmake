@@ -1,6 +1,6 @@
 include_guard(GLOBAL)
-include("${CMAKE_SOURCE_DIR}/cmake/util.cmake")
-include("${CMAKE_SOURCE_DIR}/cmake/cxx20.cmake")
+include("${CMAKE_SOURCE_DIR}/.cmake_utilities/util.cmake")
+include("${CMAKE_SOURCE_DIR}/.cmake_utilities/cxx20.cmake")
 
 function(add_executable_directory TARGET_BASE_DIR TARGET_REL_DIR)
 

@@ -1,5 +1,5 @@
 include_guard(GLOBAL)
-include("${CMAKE_SOURCE_DIR}/cmake/util.cmake")
+include("${CMAKE_SOURCE_DIR}/.cmake_utilities/util.cmake")
 
 function(add_library_directory TARGET_BASE_DIR TARGET_REL_DIR)
 

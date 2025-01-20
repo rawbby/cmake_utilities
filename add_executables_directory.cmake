@@ -1,6 +1,6 @@
 include_guard(GLOBAL)
-include("${CMAKE_SOURCE_DIR}/cmake/add_executable_directory.cmake")
-include("${CMAKE_SOURCE_DIR}/cmake/util.cmake")
+include("${CMAKE_SOURCE_DIR}/.cmake_utilities/add_executable_directory.cmake")
+include("${CMAKE_SOURCE_DIR}/.cmake_utilities/util.cmake")
 
 function(add_executables_directory TARGETS_BASE_DIR)
 

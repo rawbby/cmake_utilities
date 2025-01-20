@@ -1,6 +1,11 @@
 cmake_minimum_required(VERSION 3.14)
 
-file(LOCK "${CMAKE_CURRENT_SOURCE_DIR}/.cmake_utilities/.download_lock" DIRECTORY GUARD FILE WAIT)
+set(CMAKE_UTILITIES_VERSION "main" CACHE STRING "")
+
+file(LOCK "${CMAKE_CURRENT_SOURCE_DIR}/.cmake_utilities/download.lock" GUARD FILE RESULT_VARIABLE LOCK_RESULT)
+if (LOCK_RESULT)
+    message(FATAL_ERROR "failed to acquire download.lock")
+endif ()
 
 if (NOT EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/.cmake_utilities/.valid")
 
@@ -9,6 +14,7 @@ if (NOT EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/.cmake_utilities/.valid")
             "add_executables_directory.cmake"
             "add_libraries_directory.cmake"
             "add_library_directory.cmake"
+            "add_tests_directory.cmake"
             "all.cmake"
             "cxx20.cmake"
             "LICENSE"
@@ -18,7 +24,7 @@ if (NOT EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/.cmake_utilities/.valid")
 
     foreach (FILENAME ${FILENAMES})
         file(DOWNLOAD
-                "https://raw.githubusercontent.com/rawbby/cmake_utilities/v1.2.0/${FILENAME}"
+                "https://raw.githubusercontent.com/rawbby/cmake_utilities/${CMAKE_UTILITIES_VERSION}/${FILENAME}"
                 "${CMAKE_CURRENT_SOURCE_DIR}/.cmake_utilities/${FILENAME}"
                 STATUS DOWNLOAD_STATUS)
         list(GET DOWNLOAD_STATUS 0 DOWNLOAD_CODE)
@@ -31,4 +37,4 @@ if (NOT EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/.cmake_utilities/.valid")
     file(WRITE "${CMAKE_CURRENT_SOURCE_DIR}/.cmake_utilities/.valid" "")
 endif ()
 
-file(UNLOCK "${CMAKE_CURRENT_SOURCE_DIR}/.cmake_utilities/.download_lock" DIRECTORY GUARD FILE)
+file(UNLOCK "${CMAKE_CURRENT_SOURCE_DIR}/.cmake_utilities/download.lock" DIRECTORY GUARD FILE)
