@@ -1,5 +1,12 @@
 include_guard(GLOBAL)
-include("${CMAKE_SOURCE_DIR}/.cmake_utilities/util.cmake")
+
+if (PROJECT_NAME STREQUAL "CMakeUtilities")
+    set(CMAKE_UTILITIES_BASE_DIR "${CMAKE_SOURCE_DIR}")
+else ()
+    set(CMAKE_UTILITIES_BASE_DIR "${CMAKE_SOURCE_DIR}/.cmake_utilities")
+endif ()
+
+include("${CMAKE_UTILITIES_BASE_DIR}/.cmake_utilities/util.cmake")
 
 function(add_library_directory TARGET_BASE_DIR TARGET_REL_DIR)
 

@@ -1,6 +1,13 @@
 include_guard(GLOBAL)
-include("${CMAKE_SOURCE_DIR}/.cmake_utilities/add_library_directory.cmake")
-include("${CMAKE_SOURCE_DIR}/.cmake_utilities/util.cmake")
+
+if (PROJECT_NAME STREQUAL "CMakeUtilities")
+    set(CMAKE_UTILITIES_BASE_DIR "${CMAKE_SOURCE_DIR}")
+else ()
+    set(CMAKE_UTILITIES_BASE_DIR "${CMAKE_SOURCE_DIR}/.cmake_utilities")
+endif ()
+
+include("${CMAKE_UTILITIES_BASE_DIR}/.cmake_utilities/add_library_directory.cmake")
+include("${CMAKE_UTILITIES_BASE_DIR}/.cmake_utilities/util.cmake")
 
 function(add_libraries_directory TARGETS_BASE_DIR)
 
@@ -9,9 +16,7 @@ function(add_libraries_directory TARGETS_BASE_DIR)
     endif ()
 
     get_filename_component(TARGETS_ABS_DIR "${TARGETS_BASE_DIR}" ABSOLUTE)
-    abs_dirs_from_glob(TARGET_ABS_DIRS
-            "${TARGETS_BASE_DIR}/**/include/"
-            "${TARGETS_BASE_DIR}/**/target.cmake")
+    abs_dirs_from_glob(TARGET_ABS_DIRS "${TARGETS_BASE_DIR}/**/target.cmake")
 
     foreach (TARGET_ABS_DIR ${TARGET_ABS_DIRS})
         file(RELATIVE_PATH TARGET_REL_DIR "${TARGETS_ABS_DIR}" "${TARGET_ABS_DIR}")

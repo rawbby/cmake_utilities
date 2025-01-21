@@ -1,6 +1,13 @@
 include_guard(GLOBAL)
-include("${CMAKE_SOURCE_DIR}/.cmake_utilities/util.cmake")
-include("${CMAKE_SOURCE_DIR}/.cmake_utilities/cxx20.cmake")
+
+if (PROJECT_NAME STREQUAL "CMakeUtilities")
+    set(CMAKE_UTILITIES_BASE_DIR "${CMAKE_SOURCE_DIR}")
+else ()
+    set(CMAKE_UTILITIES_BASE_DIR "${CMAKE_SOURCE_DIR}/.cmake_utilities")
+endif ()
+
+include("${CMAKE_UTILITIES_BASE_DIR}/.cmake_utilities/util.cmake")
+include("${CMAKE_UTILITIES_BASE_DIR}/.cmake_utilities/cxx20.cmake")
 
 option(BUILD_TESTING "Build Tests" OFF)
 if (BUILD_TESTING)
