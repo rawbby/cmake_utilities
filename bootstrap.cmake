@@ -18,9 +18,12 @@ block()
     if (NOT EXISTS "${CMAKE_SOURCE_DIR}/.cmake_utilities/.valid")
         set(FILENAMES
                 "all.cmake"
+                "bootstrap.py"
+                "bootstrap_python.cmake"
                 "defaults.cmake"
                 "export.h.in"
                 "glob.cmake"
+                "ide.cmake"
                 "string.cmake"
                 "structured_directories.cmake"
                 "target_utilities.cmake")
