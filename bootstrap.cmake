@@ -18,8 +18,12 @@ block()
     if (NOT EXISTS "${CMAKE_SOURCE_DIR}/.cmake_utilities/.valid")
         set(FILENAMES
                 "all.cmake"
+                "defaults.cmake"
                 "export.h.in"
-                "structured_directories.cmake")
+                "glob.cmake"
+                "string.cmake"
+                "structured_directories.cmake"
+                "target_utilities.cmake")
 
         foreach (FILENAME ${FILENAMES})
             file(DOWNLOAD
