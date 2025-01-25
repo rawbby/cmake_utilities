@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.14)
 
-set(CMAKE_UTILITIES_VERSION "v2.1.0" CACHE STRING "The Version of CMakeUtilities to use")
+set(CMAKE_UTILITIES_VERSION "v2.1.1" CACHE STRING "The Version of CMakeUtilities to use")
 
 block()
 
@@ -12,7 +12,7 @@ block()
 
     set(LOCK_RESULT 1)
     while (LOCK_RESULT)
-        file(LOCK "${CMAKE_SOURCE_DIR}/.cmake_utilities/download.lock" GUARD FILE RESULT_VARIABLE LOCK_RESULT)
+        file(LOCK "${CMAKE_SOURCE_DIR}/.cmake_utilities/.lock" GUARD FILE RESULT_VARIABLE LOCK_RESULT)
     endwhile ()
 
     if (NOT EXISTS "${CMAKE_SOURCE_DIR}/.cmake_utilities/.valid")
