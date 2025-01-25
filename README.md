@@ -148,7 +148,7 @@ Upon configuring CMake:
    include("${CMAKE_BINARY_DIR}/bootstrap.cmake")
    include(".cmake_utilities/all.cmake")
    ```
-3. Any directory that has `executable.cmake`, `header.cmake`, `shared.cmake`, `static.cmake`, or `tests.cmake` will be *
-   *automatically picked up** and turned into the relevant target.
+3. Any directory that has `executable.cmake`, `header.cmake`, `shared.cmake`, `static.cmake`, or `tests.cmake` will be
+   **automatically picked up** and turned into the relevant target.
 
 For more detailed information, see the inline documentation within the scripts in this repository.
