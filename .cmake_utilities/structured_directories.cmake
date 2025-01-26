@@ -5,6 +5,8 @@ include("${CMAKE_SOURCE_DIR}/.cmake_utilities/target_utilities.cmake")
 include("${CMAKE_SOURCE_DIR}/.cmake_utilities/glob.cmake")
 include("${CMAKE_SOURCE_DIR}/.cmake_utilities/string.cmake")
 
+include(CTest)
+
 function(use_structured_directories)
 
     # ======================================= #
@@ -109,7 +111,6 @@ function(use_structured_directories)
     endforeach ()
 
     if (BUILD_TESTING)
-        include(CTest)
         enable_testing()
         foreach (TEST_DIR ${TEST_DIRS})
             file_glob_source(TEST_FILES "${TEST_DIR}")
