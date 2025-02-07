@@ -1,5 +1,9 @@
 #pragma once
 
-void static_function_c() {}
+inline void
+static_function_c()
+{
+}
 
-void static_function_d();
+void
+static_function_d();

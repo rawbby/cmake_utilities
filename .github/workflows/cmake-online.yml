@@ -13,21 +13,15 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [ ubuntu-latest, windows-latest ]
-        build_type: [ Release ]
-        c_compiler: [ clang, cl ]
         include:
-          - os: windows-latest
-            c_compiler: cl
-            cpp_compiler: cl
           - os: ubuntu-latest
+            build_type: Release
             c_compiler: clang
             cpp_compiler: clang++
-        exclude:
           - os: windows-latest
-            c_compiler: clang
-          - os: ubuntu-latest
+            build_type: Release
             c_compiler: cl
+            cpp_compiler: cl
 
     steps:
       - uses: actions/checkout@v4
@@ -43,6 +37,8 @@ jobs:
           cmake 
           -B "${{ steps.strings.outputs.build-output-dir }}"
           -S "${{ github.workspace }}/test_online"
+          -DCLANG_TIDY_TARGET=ON
+          -DCLANG_FORMAT_TARGET=ON
           -DBUILD_TESTING=ON
           -DCMAKE_CXX_COMPILER="${{ matrix.cpp_compiler }}"
           -DCMAKE_C_COMPILER="${{ matrix.c_compiler }}"

@@ -1,8 +1,10 @@
 #!/bin/python3
+import sys
 
-def main():
-    print("hello world!")
+
+def main() -> int:
+    return 0
 
 
 if __name__ == '__main__':
-    main()
+    sys.exit(main())

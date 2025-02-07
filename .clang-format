@@ -1,0 +1,7 @@
+Language: Cpp
+Standard: c++20
+BasedOnStyle: Mozilla
+UseTab: Never
+TabWidth: 2
+ColumnLimit: 160
+SortIncludes: CaseSensitive

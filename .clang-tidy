@@ -1,0 +1,19 @@
+Checks: '-*,
+         bugprone-*,
+         cert-*,
+         clang-analyzer-*,
+         concurrency-*,
+         cppcoreguidelines-*,
+         hicpp-*,
+         misc-*,
+         modernize-*,
+         performance-*,
+         portability-*,
+         readability-*,
+         -cppcoreguidelines-non-private-member-variables-in-classes,
+         -misc-non-private-member-variables-in-classes,
+         -modernize-use-trailing-return-type'
+
+HeaderFilterRegex: '.*'
+WarningsAsErrors: '*'
+FormatStyle: none

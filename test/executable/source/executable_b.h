@@ -1,5 +1,9 @@
 #pragma once
 
-static void executable_function_c() {}
+static void
+executable_function_c()
+{
+}
 
-void executable_function_d();
+void
+executable_function_d();

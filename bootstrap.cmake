@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.14)
 
-set(CMAKE_UTILITIES_VERSION "v2.1.5" CACHE STRING "The Version of CMakeUtilities to use")
+set(CMAKE_UTILITIES_VERSION "v2.1.6" CACHE STRING "The Version of CMakeUtilities to use")
 
 block()
 
@@ -20,6 +20,8 @@ block()
                 "all.cmake"
                 "bootstrap.py"
                 "bootstrap_python.cmake"
+                "clang_format.cmake"
+                "clang_tidy.cmake"
                 "defaults.cmake"
                 "export.h.in"
                 "glob.cmake"

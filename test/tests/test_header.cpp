@@ -1,5 +1,7 @@
 #include <header.h>
 
-int main() {
-    header_function();
+int
+main()
+{
+  header_function();
 }

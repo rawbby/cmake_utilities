@@ -58,6 +58,9 @@ function(use_structured_directories)
 
             default_shared_configuration()
 
+            clang_tidy_sources(${TARGET_SRC} ${TARGET_SOURCE} ${TARGET_INC} ${TARGET_INCLUDE})
+            clang_format_sources(${TARGET_SRC} ${TARGET_SOURCE} ${TARGET_INC} ${TARGET_INCLUDE})
+
             message("${PROJECT_NAME} - Added Shared Library       ${TARGET_NAME}")
         endblock()
     endforeach ()
@@ -73,6 +76,9 @@ function(use_structured_directories)
             default_target_properties()
             default_target_sources()
             default_target_install()
+
+            clang_tidy_sources(${TARGET_SRC} ${TARGET_SOURCE} ${TARGET_INC} ${TARGET_INCLUDE})
+            clang_format_sources(${TARGET_SRC} ${TARGET_SOURCE} ${TARGET_INC} ${TARGET_INCLUDE})
 
             message("${PROJECT_NAME} - Added Static Library       ${TARGET_NAME}")
         endblock()
@@ -90,6 +96,9 @@ function(use_structured_directories)
             default_target_sources()
             default_target_install()
 
+            clang_tidy_sources(${TARGET_SRC} ${TARGET_SOURCE} ${TARGET_INC} ${TARGET_INCLUDE})
+            clang_format_sources(${TARGET_SRC} ${TARGET_SOURCE} ${TARGET_INC} ${TARGET_INCLUDE})
+
             message("${PROJECT_NAME} - Added Header Library       ${TARGET_NAME}")
         endblock()
     endforeach ()
@@ -105,6 +114,9 @@ function(use_structured_directories)
             default_target_properties()
             default_target_sources()
             default_target_install()
+
+            clang_tidy_sources(${TARGET_SRC} ${TARGET_SOURCE} ${TARGET_INC} ${TARGET_INCLUDE})
+            clang_format_sources(${TARGET_SRC} ${TARGET_SOURCE} ${TARGET_INC} ${TARGET_INCLUDE})
 
             message("${PROJECT_NAME} - Added Executable           ${TARGET_NAME}")
         endblock()
@@ -124,6 +136,9 @@ function(use_structured_directories)
                     default_target_properties()
                     target_sources(${TARGET_NAME} PRIVATE "${TARGET_SRC}")
                     default_target_install()
+
+                    clang_tidy_sources(${TARGET_SRC})
+                    clang_format_sources(${TARGET_SRC})
 
                     add_test(NAME "${TARGET_NAME}" COMMAND $<TARGET_FILE:${TARGET_NAME}>)
                     message("${PROJECT_NAME} - Added Test                 ${TARGET_NAME}")

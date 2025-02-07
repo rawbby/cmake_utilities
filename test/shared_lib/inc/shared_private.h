@@ -1,3 +1,9 @@
-static void shared_function_c() {}
+#pragma once
 
-void shared_function_d();
+static void
+shared_function_c()
+{
+}
+
+void
+shared_function_d();
