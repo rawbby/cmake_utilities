@@ -22,7 +22,6 @@ function(clang_format_sources)
                 COMMAND "${CLANG_FORMAT_EXECUTABLE}"
                 "${CLANG_FORMAT_CONFIG_FILE_OPTION}"
                 --Werror
-                --fail-on-incomplete-format
                 -i
                 ${ARGN})
     endif ()
