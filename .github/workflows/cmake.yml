@@ -37,6 +37,7 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
+      - uses: ashutoshvarma/setup-ninja@master
 
       - name: Set reusable strings
         id: strings
