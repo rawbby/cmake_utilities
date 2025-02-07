@@ -26,9 +26,8 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: ashutoshvarma/setup-ninja@v1
-        if: matrix.generator == 'Ninja'
       - uses: ilammy/msvc-dev-cmd@v1
-        if: matrix.os == 'windows-latest' && matrix.generator == 'Ninja'
+        if: matrix.os == 'windows-latest'
 
       - name: Set reusable strings
         id: strings
