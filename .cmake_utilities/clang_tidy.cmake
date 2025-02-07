@@ -2,6 +2,11 @@ include_guard(GLOBAL)
 
 option(CLANG_TIDY_TARGET "Create a target for clang-tidy" OFF)
 
+if (CMAKE_GENERATOR MATCHES "Visual Studio")
+    message(WARNING "Visual Studio generator detected; disabling requested clang-tidy target!")
+    set(CLANG_TIDY_TARGET OFF CACHE BOOL "Disable clang-tidy target for Visual Studio generator" FORCE)
+endif ()
+
 if (CLANG_TIDY_TARGET)
     find_program(CLANG_TIDY_EXECUTABLE NAMES clang-tidy)
     if (NOT CLANG_TIDY_EXECUTABLE)

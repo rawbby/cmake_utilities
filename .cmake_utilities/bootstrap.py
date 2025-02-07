@@ -69,7 +69,7 @@ def bootstrap():
         with lock_venv():
             if not valid_file.exists():
                 run([sys.executable, '-m', 'venv', '.venv'])
-                run([venv_executable, '-m', 'pip', 'install', '--upgrade', 'pip'])
+                run([venv_executable, '-m', 'ensurepip', '--upgrade'])
                 valid_file.touch()
 
 

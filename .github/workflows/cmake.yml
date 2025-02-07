@@ -2,7 +2,7 @@ name: CMake
 
 on:
   release:
-    types: [published]
+    types: [ published ]
   workflow_dispatch:
   pull_request:
 
@@ -18,14 +18,22 @@ jobs:
             build_type: Release
             c_compiler: cl
             cpp_compiler: cl
+            generator: Ninja
+          - os: windows-latest
+            build_type: Release
+            c_compiler: cl
+            cpp_compiler: cl
+            generator: "Visual Studio 17 2022"
           - os: ubuntu-latest
             build_type: Release
             c_compiler: gcc
             cpp_compiler: g++
+            generator: Ninja
           - os: ubuntu-latest
             build_type: Release
             c_compiler: clang
             cpp_compiler: clang++
+            generator: Ninja
 
     steps:
       - uses: actions/checkout@v4
@@ -38,9 +46,10 @@ jobs:
 
       - name: Configure CMake
         run: >
-          cmake 
+          cmake
           -B "${{ steps.strings.outputs.build-output-dir }}"
           -S "${{ github.workspace }}"
+          -G "${{ matrix.generator }}"
           -DCLANG_TIDY_TARGET=ON
           -DCLANG_FORMAT_TARGET=ON
           -DBUILD_TESTING=ON
