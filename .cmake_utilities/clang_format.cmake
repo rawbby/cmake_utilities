@@ -4,25 +4,20 @@ option(CLANG_FORMAT_TARGET "Create a target for clang-format" OFF)
 
 add_custom_target(clang_format)
 if (CLANG_FORMAT_TARGET)
-    find_program(CLANG_FORMAT_EXECUTABLE NAMES clang-format)
-    if (NOT CLANG_FORMAT_EXECUTABLE)
-        message(FATAL_ERROR "clang-format not found!")
-    endif ()
-    if (EXISTS "${CMAKE_SOURCE_DIR}/.clang-format")
-        set(CLANG_FORMAT_CONFIG_FILE_OPTION "--style=file:${CMAKE_SOURCE_DIR}/.clang-format")
-    endif ()
+    file(REMOVE "${CMAKE_BINARY_DIR}/clang_format_sources.txt")
+    file(TOUCH "${CMAKE_BINARY_DIR}/clang_format_sources.txt")
+    add_custom_command(TARGET clang_format PRE_BUILD
+            WORKING_DIRECTORY "${CMAKE_BINARY_DIR}"
+            COMMAND "${CMAKE_COMMAND}"
+            -DCMAKE_BINARY_DIR="${CMAKE_BINARY_DIR}"
+            -DCMAKE_SOURCE_DIR="${CMAKE_SOURCE_DIR}"
+            -P "${CMAKE_SOURCE_DIR}/.cmake_utilities/scripts/run_clang_format.cmake")
 endif ()
 
 function(clang_format_sources)
     if (CLANG_FORMAT_TARGET)
-        add_custom_command(
-                TARGET clang_format
-                PRE_BUILD
-                WORKING_DIRECTORY "${CMAKE_SOURCE_DIR}"
-                COMMAND "${CLANG_FORMAT_EXECUTABLE}"
-                "${CLANG_FORMAT_CONFIG_FILE_OPTION}"
-                --Werror
-                -i
-                ${ARGN})
+        foreach (ARG IN LISTS ARGN)
+            file(APPEND "${CMAKE_BINARY_DIR}/clang_format_sources.txt" "${ARG}\n")
+        endforeach ()
     endif ()
 endfunction()

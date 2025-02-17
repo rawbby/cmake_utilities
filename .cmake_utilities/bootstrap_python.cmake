@@ -9,8 +9,7 @@ else ()
 endif ()
 
 function(bootstrap_python)
-    message("${PYTHON_EXECUTABLE} ${CMAKE_SOURCE_DIR}/.cmake_utilities/bootstrap.py")
-    execute_process(COMMAND "${PYTHON_EXECUTABLE}" "${CMAKE_SOURCE_DIR}/.cmake_utilities/bootstrap.py"
+    execute_process(COMMAND "${PYTHON_EXECUTABLE}" "${CMAKE_SOURCE_DIR}/.cmake_utilities/scripts/bootstrap.py"
             WORKING_DIRECTORY "${CMAKE_SOURCE_DIR}"
             RESULT_VARIABLE PROCESS_RESULT
             ERROR_VARIABLE PROCESS_ERROR)
@@ -25,11 +24,7 @@ function(bootstrap_python)
 endfunction()
 
 function(execute_python)
-    if (ARGC EQUAL 0)
-        message(WARNING "execute_python ignored as no parameter was passed")
-
-    else ()
-        message("${VENV_PYTHON_EXECUTABLE} ${ARGN}")
+    if (NOT ARGC EQUAL 0)
         execute_process(COMMAND "${VENV_PYTHON_EXECUTABLE}" ${ARGN}
                 WORKING_DIRECTORY "${CMAKE_SOURCE_DIR}"
                 RESULT_VARIABLE PROCESS_RESULT
@@ -41,6 +36,5 @@ function(execute_python)
                     "${PROJECT_NAME} - Executing Python failed with Exit Code ${PROCESS_RESULT}:\n"
                     "${WHITESPACE} - Python Error:\n${PROCESS_ERROR}")
         endif ()
-
     endif ()
 endfunction()

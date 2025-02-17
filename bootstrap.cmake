@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.14)
 
-set(CMAKE_UTILITIES_VERSION "v2.1.8" CACHE STRING "The Version of CMakeUtilities to use")
+set(CMAKE_UTILITIES_VERSION "v2.2.0" CACHE STRING "The Version of CMakeUtilities to use")
 
 block()
 
@@ -17,8 +17,10 @@ block()
 
     if (NOT EXISTS "${CMAKE_SOURCE_DIR}/.cmake_utilities/.valid")
         set(FILENAMES
+                "scripts/bootstrap.py"
+                "scripts/run_clang_format.cmake"
+                "scripts/run_clang_tidy.cmake"
                 "all.cmake"
-                "bootstrap.py"
                 "bootstrap_python.cmake"
                 "clang_format.cmake"
                 "clang_tidy.cmake"
@@ -42,7 +44,7 @@ block()
             endif ()
         endforeach ()
 
-        file(WRITE "${CMAKE_SOURCE_DIR}/.cmake_utilities/.valid" "")
+        file(TOUCH "${CMAKE_SOURCE_DIR}/.cmake_utilities/.valid")
     endif ()
 
 endblock()

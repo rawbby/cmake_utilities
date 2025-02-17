@@ -2,7 +2,7 @@
 import sys
 
 
-def main() -> int:
+def main():
     return 0
 
 
