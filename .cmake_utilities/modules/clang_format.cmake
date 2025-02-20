@@ -1,5 +1,8 @@
 include_guard(GLOBAL)
 
+get_filename_component(MODULE_NAME "${CMAKE_CURRENT_LIST_FILE}" NAME_WE)
+message("${PROJECT_NAME} - Added Module               ${MODULE_NAME}")
+
 option(CLANG_FORMAT_TARGET "Create a target for clang-format" OFF)
 
 add_custom_target(clang_format)
