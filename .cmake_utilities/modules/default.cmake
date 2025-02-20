@@ -57,3 +57,11 @@ set(CMAKE_INTERPROCEDURAL_OPTIMIZATION ON CACHE BOOL "")
 
 # Enable or disable building of test targets
 option(BUILD_TESTING "Build Tests" OFF)
+
+if (NOT CMAKE_CXX_SOURCE_FILE_EXTENSIONS)
+    set(CMAKE_CXX_SOURCE_FILE_EXTENSIONS C M c++ cc cpp cxx m mm mpp CPP ixx cppm ccm cxxm c++m)
+endif ()
+
+if (NOT CMAKE_CXX_HEADER_FILE_EXTENSIONS)
+    set(CMAKE_CXX_HEADER_FILE_EXTENSIONS H h++ hh hpp hxx HPP inl)
+endif ()
