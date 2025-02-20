@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.14)
 
-set(CMAKE_UTILITIES_VERSION "v2.3.0" CACHE STRING "The Version of CMakeUtilities to use")
+set(CMAKE_UTILITIES_VERSION "v2.3.1" CACHE STRING "The Version of CMakeUtilities to use")
 
 block()
 
@@ -17,20 +17,22 @@ block()
 
     if (NOT EXISTS "${CMAKE_SOURCE_DIR}/.cmake_utilities/.valid")
         set(FILENAMES
+                "modules/structured_directories/common.cmake"
+                "modules/structured_directories/executable.cmake"
+                "modules/structured_directories/export.h.in"
+                "modules/structured_directories/header.cmake"
+                "modules/structured_directories/shared.cmake"
+                "modules/structured_directories/static.cmake"
+                "modules/structured_directories/test.cmake"
+                "modules/all.cmake"
+                "modules/clang_format.cmake"
+                "modules/clang_tidy.cmake"
+                "modules/default.cmake"
+                "modules/python_venv.cmake"
+                "modules/structured_directories.cmake"
                 "scripts/bootstrap.py"
                 "scripts/run_clang_format.cmake"
-                "scripts/run_clang_tidy.cmake"
-                "all.cmake"
-                "bootstrap_python.cmake"
-                "clang_format.cmake"
-                "clang_tidy.cmake"
-                "defaults.cmake"
-                "export.h.in"
-                "glob.cmake"
-                "ide.cmake"
-                "string.cmake"
-                "structured_directories.cmake"
-                "target_utilities.cmake")
+                "scripts/run_clang_tidy.cmake")
 
         foreach (FILENAME ${FILENAMES})
             file(DOWNLOAD
