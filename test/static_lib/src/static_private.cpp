@@ -1,4 +1,4 @@
-#include <static_private.h>
+#include "./static_private.h"
 
 void
 static_function_d()

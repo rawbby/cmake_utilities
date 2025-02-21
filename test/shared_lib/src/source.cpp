@@ -1,7 +1,7 @@
-#include "shared_lib_export.h"
+#include "./shared_private.h"
 
 #include <shared.h>
-#include <shared_private.h>
+#include <shared_lib_export.h>
 
 SHARED_LIB_API void
 shared_function_a()

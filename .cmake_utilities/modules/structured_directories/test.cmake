@@ -8,14 +8,19 @@ if (BUILD_TESTING)
     foreach (TEST_DIR ${TEST_DIRS})
 
         glob_source(TEST_FILES ${TEST_DIR})
+        glob_module(TEST_FILE_MODULES ${TEST_DIR})
 
-        foreach (TARGET_SRC ${TEST_FILES})
+        foreach (TARGET_SRC ${TEST_FILES} ${TEST_FILE_MODULES})
             get_filename_component(TARGET_NAME "${TARGET_SRC}" NAME_WE)
             add_executable(${TARGET_NAME} ${TARGET_SRC})
+
+            set(TARGET_CLANG_FORMAT_AUTO_SOURCE ${CLANG_FORMAT_AUTO_SOURCE})
+            set(TARGET_CLANG_TIDY_AUTO_SOURCE ${CLANG_TIDY_AUTO_SOURCE})
 
             set(TARGET_CXX_STANDARD ${CMAKE_CXX_STANDARD})
             set(TARGET_CXX_STANDARD_REQUIRED ${CMAKE_CXX_STANDARD_REQUIRED})
             set(TARGET_CXX_EXTENSIONS ${CMAKE_CXX_EXTENSIONS})
+            set(TARGET_CXX_SCAN_FOR_MODULES ${CMAKE_CXX_SCAN_FOR_MODULES})
             set(TARGET_INTERPROCEDURAL_OPTIMIZATION ${CMAKE_INTERPROCEDURAL_OPTIMIZATION})
             set(TARGET_RUNTIME_OUTPUT_DIRECTORY "${CMAKE_RUNTIME_OUTPUT_DIRECTORY}")
             set(TARGET_LIBRARY_OUTPUT_DIRECTORY "${CMAKE_LIBRARY_OUTPUT_DIRECTORY}")
@@ -31,6 +36,7 @@ if (BUILD_TESTING)
                     CXX_STANDARD ${TARGET_CXX_STANDARD}
                     CXX_STANDARD_REQUIRED ${TARGET_CXX_STANDARD_REQUIRED}
                     CXX_EXTENSIONS ${TARGET_CXX_EXTENSIONS}
+                    CXX_SCAN_FOR_MODULES ${TARGET_CXX_SCAN_FOR_MODULES}
                     INTERPROCEDURAL_OPTIMIZATION ${TARGET_INTERPROCEDURAL_OPTIMIZATION}
                     RUNTIME_OUTPUT_DIRECTORY "${TARGET_RUNTIME_OUTPUT_DIRECTORY}"
                     LIBRARY_OUTPUT_DIRECTORY "${TARGET_LIBRARY_OUTPUT_DIRECTORY}"
@@ -46,8 +52,12 @@ if (BUILD_TESTING)
                     LIBRARY DESTINATION "${TARGET_LIBRARY_INSTALL_DIRECTORY}"
                     ARCHIVE DESTINATION "${TARGET_ARCHIVE_INSTALL_DIRECTORY}")
 
-            clang_tidy_sources(${TARGET_SRC})
-            clang_format_sources(${TARGET_SRC})
+            if (${TARGET_CLANG_TIDY_AUTO_SOURCE})
+                clang_tidy_sources(${TARGET_SRC})
+            endif ()
+            if (${TARGET_CLANG_FORMAT_AUTO_SOURCE})
+                clang_format_sources(${TARGET_SRC})
+            endif ()
 
             add_test(NAME "${TARGET_NAME}" COMMAND $<TARGET_FILE:${TARGET_NAME}>)
             message("${PROJECT_NAME} - Added Test                 ${TARGET_NAME}")

@@ -12,8 +12,9 @@ Checks: '-*,
          readability-*,
          -cppcoreguidelines-non-private-member-variables-in-classes,
          -misc-non-private-member-variables-in-classes,
+         -misc-use-internal-linkage,
+         -readability-identifier-length,
          -modernize-use-trailing-return-type'
-
 HeaderFilterRegex: '.*'
-WarningsAsErrors: '*'
+WarningsAsErrors: '*,-misc-use-internal-linkage'
 FormatStyle: none
