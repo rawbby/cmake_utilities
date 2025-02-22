@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.14)
 
-set(CMAKE_UTILITIES_VERSION "v2.3.4" CACHE STRING "The Version of CMakeUtilities to use")
+set(CMAKE_UTILITIES_VERSION "v2.3.5" CACHE STRING "The Version of CMakeUtilities to use")
 
 block()
 
@@ -27,6 +27,8 @@ block()
                 "scripts/run_clang_tidy.cmake"
                 "scripts/run_clang_format.cmake"
                 "scripts/bootstrap.py"
+                "scripts/file_lock.py"
+                "scripts/run.py"
                 "modules/structured_directories.cmake"
                 "modules/python_venv.cmake"
                 "modules/default.cmake"
