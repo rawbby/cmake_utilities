@@ -3,5 +3,5 @@ Standard: c++20
 BasedOnStyle: Mozilla
 UseTab: Never
 TabWidth: 2
-ColumnLimit: 160
+ColumnLimit: 0
 SortIncludes: CaseSensitive
