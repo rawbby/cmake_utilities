@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.14)
 
-set(CMAKE_UTILITIES_VERSION "v2.3.3" CACHE STRING "The Version of CMakeUtilities to use")
+set(CMAKE_UTILITIES_VERSION "v2.3.4" CACHE STRING "The Version of CMakeUtilities to use")
 
 block()
 
@@ -17,22 +17,22 @@ block()
 
     if (NOT EXISTS "${CMAKE_SOURCE_DIR}/.cmake_utilities/.valid")
         set(FILENAMES
-                ".cmake_utilities/modules/structured_directories/common.cmake"
-                ".cmake_utilities/modules/structured_directories/executable.cmake"
-                ".cmake_utilities/modules/structured_directories/export.h.in"
-                ".cmake_utilities/modules/structured_directories/header.cmake"
-                ".cmake_utilities/modules/structured_directories/shared.cmake"
-                ".cmake_utilities/modules/structured_directories/static.cmake"
-                ".cmake_utilities/modules/structured_directories/test.cmake"
-                ".cmake_utilities/scripts/run_clang_tidy.cmake"
-                ".cmake_utilities/scripts/run_clang_format.cmake"
-                ".cmake_utilities/scripts/bootstrap.py"
-                ".cmake_utilities/modules/structured_directories.cmake"
-                ".cmake_utilities/modules/python_venv.cmake"
-                ".cmake_utilities/modules/default.cmake"
-                ".cmake_utilities/modules/clang_tidy.cmake"
-                ".cmake_utilities/modules/clang_format.cmake"
-                ".cmake_utilities/modules/all.cmake")
+                "modules/structured_directories/common.cmake"
+                "modules/structured_directories/executable.cmake"
+                "modules/structured_directories/export.h.in"
+                "modules/structured_directories/header.cmake"
+                "modules/structured_directories/shared.cmake"
+                "modules/structured_directories/static.cmake"
+                "modules/structured_directories/test.cmake"
+                "scripts/run_clang_tidy.cmake"
+                "scripts/run_clang_format.cmake"
+                "scripts/bootstrap.py"
+                "modules/structured_directories.cmake"
+                "modules/python_venv.cmake"
+                "modules/default.cmake"
+                "modules/clang_tidy.cmake"
+                "modules/clang_format.cmake"
+                "modules/all.cmake")
 
         foreach (FILENAME ${FILENAMES})
             file(DOWNLOAD "${BASE_URL}/.cmake_utilities/${FILENAME}" "${CMAKE_SOURCE_DIR}/.cmake_utilities/${FILENAME}" STATUS DOWNLOAD_STATUS)
