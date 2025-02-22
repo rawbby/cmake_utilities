@@ -5,3 +5,4 @@ project(CMakeUtilities LANGUAGES CXX)
 include(.cmake_utilities/modules/all.cmake)
 
 python("${CMAKE_SOURCE_DIR}/test/test.py")
+structured_directories()

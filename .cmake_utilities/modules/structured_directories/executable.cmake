@@ -1,7 +1,3 @@
-include_guard(GLOBAL)
-
-include("${CMAKE_SOURCE_DIR}/.cmake_utilities/modules/structured_directories/common.cmake")
-
 foreach (TARGET_DIR ${EXEC_DIRS})
     get_filename_component(TARGET_NAME "${TARGET_DIR}" NAME)
     add_executable(${TARGET_NAME})

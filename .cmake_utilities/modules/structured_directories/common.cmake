@@ -1,5 +1,3 @@
-include_guard(GLOBAL)
-
 function(glob_source OUT_VARIABLE CXX_SOURCE_DIRECTORY)
     foreach (CXX_SOURCE_FILE_EXTENSION C c++ cc cpp cxx CPP)
         list(APPEND CXX_SOURCE_PATTERNS "${CXX_SOURCE_DIRECTORY}/*.${CXX_SOURCE_FILE_EXTENSION}")
@@ -21,7 +19,14 @@ foreach (GLOB_PATH ${GLOB_PATHS})
     get_filename_component(ABS_GLOB_PATH "${GLOB_PATH}" ABSOLUTE)
     get_filename_component(ABS_GLOB_NAME "${ABS_GLOB_PATH}" NAME)
     get_filename_component(ABS_GLOB_DIR "${ABS_GLOB_PATH}" DIRECTORY)
+    get_filename_component(TARGET_NAME "${ABS_GLOB_DIR}" NAME)
+
     string(FIND "${ABS_GLOB_DIR}" ".cmake_utilities" POS)
+    if (NOT POS EQUAL -1)
+        continue()
+    endif ()
+
+    list(FIND STRUCTURED_DIRECTORIES_SKIP "${TARGET_NAME}" POS)
     if (NOT POS EQUAL -1)
         continue()
     endif ()

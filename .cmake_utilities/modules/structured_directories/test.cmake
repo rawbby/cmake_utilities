@@ -1,6 +1,3 @@
-include_guard(GLOBAL)
-
-include("${CMAKE_SOURCE_DIR}/.cmake_utilities/modules/structured_directories/common.cmake")
 include(CTest)
 
 if (BUILD_TESTING)
