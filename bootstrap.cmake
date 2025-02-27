@@ -1,14 +1,9 @@
 cmake_minimum_required(VERSION 3.14)
 
-set(CMAKE_UTILITIES_VERSION "v2.3.6" CACHE STRING "The Version of CMakeUtilities to use")
+set(CMAKE_UTILITIES_VERSION "v2.3.7" CACHE STRING "The Version of CMakeUtilities to use")
 
 block()
-
-    if (CMAKE_UTILITIES_VERSION STREQUAL "main")
-        set(BASE_URL "https://raw.githubusercontent.com/rawbby/cmake_utilities/refs/heads/main")
-    else ()
-        set(BASE_URL "https://raw.githubusercontent.com/rawbby/cmake_utilities/refs/tags/${CMAKE_UTILITIES_VERSION}")
-    endif ()
+    set(BASE_URL "https://raw.githubusercontent.com/rawbby/cmake_utilities/refs/tags/${CMAKE_UTILITIES_VERSION}")
 
     set(LOCK_RESULT 1)
     while (LOCK_RESULT)
@@ -24,24 +19,24 @@ block()
                 "modules/structured_directories/shared.cmake"
                 "modules/structured_directories/static.cmake"
                 "modules/structured_directories/test.cmake"
-                "scripts/run_clang_tidy.cmake"
-                "scripts/run_clang_format.cmake"
+                "modules/all.cmake"
+                "modules/clang_format.cmake"
+                "modules/clang_tidy.cmake"
+                "modules/default.cmake"
+                "modules/python_venv.cmake"
+                "modules/structured_directories.cmake"
                 "scripts/bootstrap.py"
                 "scripts/file_lock.py"
                 "scripts/run.py"
-                "modules/structured_directories.cmake"
-                "modules/python_venv.cmake"
-                "modules/default.cmake"
-                "modules/clang_tidy.cmake"
-                "modules/clang_format.cmake"
-                "modules/all.cmake")
+                "scripts/run_clang_format.cmake"
+                "scripts/run_clang_tidy.cmake")
 
         foreach (FILENAME ${FILENAMES})
             file(DOWNLOAD "${BASE_URL}/.cmake_utilities/${FILENAME}" "${CMAKE_SOURCE_DIR}/.cmake_utilities/${FILENAME}" STATUS DOWNLOAD_STATUS)
             list(GET DOWNLOAD_STATUS 0 DOWNLOAD_CODE)
             if (NOT ${DOWNLOAD_CODE} EQUAL 0)
                 list(GET DOWNLOAD_STATUS 1 DOWNLOAD_MESSAGE)
-                message(FATAL_ERROR "File Download failed with Error Code: ${DOWNLOAD_CODE} ${DOWNLOAD_MESSAGE}")
+                message(FATAL_ERROR "File Download failed with Error Code: ${DOWNLOAD_CODE} ${DOWNLOAD_MESSAGE} (${BASE_URL}/.cmake_utilities/${FILENAME})")
             endif ()
         endforeach ()
 
