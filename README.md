@@ -8,6 +8,7 @@ project based on marker `.cmake` files. It works on Linux and Windows, scanning 
 3. **shared.cmake**
 4. **static.cmake**
 5. **tests.cmake**
+6. **extern.cmake**
 
 ---
 
@@ -98,6 +99,14 @@ A normal static library is compiled with `add_library(<target> STATIC)`.
 - Each `.cpp` (or other source extension) in this folder is built as a **separate test executable**.
 - **No test framework** is provided; each test is a simple executable.
 - When `BUILD_TESTING=ON`, CTest is enabled, and these executables are registered as tests (via `add_test`).
+
+### 6. `extern.cmake`
+
+**Purpose**: Defines a directory containing only a single script to ensure an **external dependency**.
+
+**Behavior**:
+
+- is included once
 
 ---
 

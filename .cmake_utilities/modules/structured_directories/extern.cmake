@@ -1,0 +1,5 @@
+foreach (TARGET_DIR ${EXTERN_DIRS})
+    get_filename_component(TARGET_NAME "${TARGET_DIR}" NAME)
+    include("${TARGET_DIR}/extern.cmake")
+    message("${PROJECT_NAME} - Added External Dependency  ${TARGET_NAME}")
+endforeach ()
