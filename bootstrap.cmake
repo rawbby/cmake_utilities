@@ -15,6 +15,7 @@ block()
                 "modules/structured_directories/common.cmake"
                 "modules/structured_directories/executable.cmake"
                 "modules/structured_directories/export.h.in"
+                "modules/structured_directories/extern.cmake"
                 "modules/structured_directories/header.cmake"
                 "modules/structured_directories/shared.cmake"
                 "modules/structured_directories/static.cmake"
