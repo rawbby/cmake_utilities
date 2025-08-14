@@ -23,13 +23,15 @@ foreach (TARGET_DIR ${EXTERN_DIRS})
     get_filename_component(TARGET_NAME "${TARGET_DIR}" NAME)
 
     push_cache_var(BUILD_TESTING OFF BOOL)
-    push_cache_var(CMAKE_WARN_DEPRECATED OFF BOOL)
     push_cache_var(CMAKE_MESSAGE_LOG_LEVEL ERROR INTERNAL)
+    push_cache_var(CMAKE_SUPPRESS_DEVELOPER_WARNINGS 1 INTERNAL)
+    push_cache_var(CMAKE_WARN_DEPRECATED OFF BOOL)
 
     include("${TARGET_DIR}/extern.cmake")
 
-    pop_cache_var(CMAKE_MESSAGE_LOG_LEVEL)
     pop_cache_var(CMAKE_WARN_DEPRECATED)
+    pop_cache_var(CMAKE_SUPPRESS_DEVELOPER_WARNINGS)
+    pop_cache_var(CMAKE_MESSAGE_LOG_LEVEL)
     pop_cache_var(BUILD_TESTING)
 
     message("${PROJECT_NAME} - Added External Dependency  ${TARGET_NAME}")
