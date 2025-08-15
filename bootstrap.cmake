@@ -1,13 +1,13 @@
 cmake_minimum_required(VERSION 3.14)
 
-set(CMAKE_UTILITIES_VERSION "v2.3.11" CACHE STRING "The Version of CMakeUtilities to use")
+set(CMAKE_UTILITIES_VERSION "v2.3.12" CACHE STRING "The Version of CMakeUtilities to use")
 
-block()
+function(cmake_utilities_bootstrap)
     set(BASE_URL "https://raw.githubusercontent.com/rawbby/cmake_utilities/refs/tags/${CMAKE_UTILITIES_VERSION}")
 
     set(LOCK_RESULT 1)
     while (LOCK_RESULT)
-        file(LOCK "${CMAKE_SOURCE_DIR}/.cmake_utilities/.lock" GUARD FILE RESULT_VARIABLE LOCK_RESULT)
+        file(LOCK "${CMAKE_SOURCE_DIR}/.cmake_utilities/.lock" GUARD FUNCTION RESULT_VARIABLE LOCK_RESULT)
     endwhile ()
 
     if (NOT EXISTS "${CMAKE_SOURCE_DIR}/.cmake_utilities/.valid")
@@ -43,5 +43,5 @@ block()
 
         file(TOUCH "${CMAKE_SOURCE_DIR}/.cmake_utilities/.valid")
     endif ()
-
-endblock()
+endfunction()
+cmake_utilities_bootstrap()
