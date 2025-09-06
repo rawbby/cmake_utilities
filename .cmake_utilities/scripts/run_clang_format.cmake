@@ -45,20 +45,16 @@ endif ()
 
 # execute clang-format
 if (EXISTS "${CMAKE_SOURCE_DIR}/.clang-format")
-    execute_process(COMMAND "${CLANG_FORMAT_EXECUTABLE}"
+    execute_process(COMMAND
+            "${CLANG_FORMAT_EXECUTABLE}"
             --style="file:${CMAKE_SOURCE_DIR}/.clang-format"
-            --Werror
-            -i
-            ${CLANG_FORMAT_FILES}
-            ERROR_QUIET
+            -i ${CLANG_FORMAT_FILES}
             RESULT_VARIABLE CLANG_FORMAT_RESULT
             WORKING_DIRECTORY "${CMAKE_BINARY_DIR}")
 else ()
-    execute_process(COMMAND "${CLANG_FORMAT_EXECUTABLE}"
-            --Werror
-            -i
-            ${CLANG_FORMAT_FILES}
-            ERROR_QUIET
+    execute_process(COMMAND
+            "${CLANG_FORMAT_EXECUTABLE}"
+            -i ${CLANG_FORMAT_FILES}
             RESULT_VARIABLE CLANG_FORMAT_RESULT
             WORKING_DIRECTORY "${CMAKE_BINARY_DIR}")
 endif ()

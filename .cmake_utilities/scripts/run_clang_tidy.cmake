@@ -51,23 +51,18 @@ endif ()
 
 # execute clang-tidy conditionally with .clang-tidy config
 if (EXISTS "${CMAKE_SOURCE_DIR}/.clang-tidy")
-    execute_process(COMMAND "${CLANG_TIDY_EXECUTABLE}"
+    execute_process(COMMAND
+            "${CLANG_TIDY_EXECUTABLE}"
             --config-file="${CMAKE_SOURCE_DIR}/.clang-tidy"
             -p="${CMAKE_BINARY_DIR}"
-            -fix
-            -fix-errors
-            --quiet
             ${CLANG_TIDY_FILES}
-            ERROR_QUIET
             RESULT_VARIABLE CLANG_TIDY_RESULT
             WORKING_DIRECTORY "${CMAKE_BINARY_DIR}")
 else ()
-    execute_process(COMMAND "${CLANG_TIDY_EXECUTABLE}"
+    execute_process(COMMAND
+            "${CLANG_TIDY_EXECUTABLE}"
             -p="${CMAKE_BINARY_DIR}"
-            -fix
-            -fix-errors
             ${CLANG_TIDY_FILES}
-            ERROR_QUIET
             RESULT_VARIABLE CLANG_TIDY_RESULT
             WORKING_DIRECTORY "${CMAKE_BINARY_DIR}")
 endif ()
