@@ -16,10 +16,10 @@ option(CLANG_TIDY_AUTO_SOURCE "automatically add structured directories sources 
 
 macro(structured_directories)
     include("${CMAKE_SOURCE_DIR}/.cmake_utilities/modules/structured_directories/common.cmake")
+    include("${CMAKE_SOURCE_DIR}/.cmake_utilities/modules/structured_directories/extern.cmake")
     include("${CMAKE_SOURCE_DIR}/.cmake_utilities/modules/structured_directories/executable.cmake")
     include("${CMAKE_SOURCE_DIR}/.cmake_utilities/modules/structured_directories/header.cmake")
     include("${CMAKE_SOURCE_DIR}/.cmake_utilities/modules/structured_directories/shared.cmake")
     include("${CMAKE_SOURCE_DIR}/.cmake_utilities/modules/structured_directories/static.cmake")
     include("${CMAKE_SOURCE_DIR}/.cmake_utilities/modules/structured_directories/test.cmake")
-    include("${CMAKE_SOURCE_DIR}/.cmake_utilities/modules/structured_directories/extern.cmake")
 endmacro()
