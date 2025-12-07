@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.14)
 
-set(CMAKE_UTILITIES_VERSION "v2.3.14" CACHE STRING "The Version of CMakeUtilities to use")
+set(CMAKE_UTILITIES_VERSION "v2.4.0" CACHE STRING "The Version of CMakeUtilities to use")
 
 function(cmake_utilities_bootstrap)
     set(BASE_URL "https://raw.githubusercontent.com/rawbby/cmake_utilities/refs/tags/${CMAKE_UTILITIES_VERSION}")
@@ -27,6 +27,11 @@ function(cmake_utilities_bootstrap)
                 "modules/python_venv.cmake"
                 "modules/structured_directories.cmake"
                 "scripts/bootstrap.py"
+                "scripts/cxx_standard_11_test.cpp"
+                "scripts/cxx_standard_14_test.cpp"
+                "scripts/cxx_standard_17_test.cpp"
+                "scripts/cxx_standard_20_test.cpp"
+                "scripts/cxx_standard_23_test.cpp"
                 "scripts/file_lock.py"
                 "scripts/run.py"
                 "scripts/run_clang_format.cmake"
