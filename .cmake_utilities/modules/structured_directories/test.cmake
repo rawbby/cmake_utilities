@@ -23,6 +23,8 @@ if (BUILD_TESTING)
             set(TARGET_ARCHIVE_INSTALL_DIRECTORY "${CMAKE_ARCHIVE_INSTALL_DIRECTORY}")
             set(TARGET_INCLUDE_INSTALL_DIRECTORY "${CMAKE_INCLUDE_INSTALL_DIRECTORY}")
 
+            set(TARGET_COMMAND $<TARGET_FILE:${TARGET_NAME}>)
+
             include("${TEST_DIR}/tests.cmake")
             set_target_properties(${TARGET_NAME} PROPERTIES
                     LINKER_LANGUAGE CXX
@@ -51,7 +53,7 @@ if (BUILD_TESTING)
                 clang_format_sources(${TARGET_SRC})
             endif ()
 
-            add_test(NAME "${TARGET_NAME}" COMMAND $<TARGET_FILE:${TARGET_NAME}>)
+            add_test(NAME "${TARGET_NAME}" COMMAND ${TARGET_COMMAND})
             message("${PROJECT_NAME} - Added Test                 ${TARGET_NAME}")
         endforeach ()
     endforeach ()
